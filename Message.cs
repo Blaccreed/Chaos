@@ -8,6 +8,9 @@ namespace Chaos
 {
     class Message
     {
+        /// <summary>
+        /// Cette classe permet de gérer les messages que s'envoient les utilisateurs.
+        /// </summary>
         private int id_message;
         private string contenue;
         private DateTime dt_hr_env_msg;
@@ -22,6 +25,32 @@ namespace Chaos
             this.LUtilisateur = LUtilisateur;
             this.LeChannel = LeChannel;
         }
-            
+
+        public int GetId_message()
+        {
+            return id_message;
+        }
+
+        public String GetContenue()
+        {
+            return contenue;
+        }
+
+        public DateTime GetDt_hr_env_msg()
+        {
+            return dt_hr_env_msg;
+        }
+
+        public User GetLUtilisateur()
+        {
+            return LUtilisateur;
+        }
+
+        public Channel GetLeChannel()
+        {
+            return LeChannel;
+        }
+
+
     }
 }

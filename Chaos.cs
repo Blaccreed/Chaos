@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace Chaos
 {
-    public partial class Form1 : Form
+    public partial class Chaos : Form
     {
-        public Form1()
+        public Chaos()
         {
             InitializeComponent();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tbConnServeur_Click(object sender, EventArgs e)
-        {
-            ORM.Connexion();
         }
     }
 }

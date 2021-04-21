@@ -8,44 +8,71 @@ using System.Windows.Forms;
 
 namespace Chaos
 {
-    class ORM
+    public static class ORM
     {
-            private static MySqlConnection conn = null;
+        private static MySqlConnection conn = null;
 
-            /// <summary>
-            /// Permet d'opérer une connexion entre le client applicatif et le serveur de base de données
-            /// </summary>
-            /// <returns>Un booléen : true si la connexion a pu s'opérer, false sinon</returns>
-            public static bool Connexion()
-            {
-               string sConnexion = @"server=localhost;userid=root;passwords=root;database=chaos";
-               conn = new MySqlConnection(sConnexion);
-               conn.Open();
-               return (conn.State == System.Data.ConnectionState.Open);
-            }
-
-            /// <summary>
-            /// Permet de fermer une connexion entre le client applicatif et le serveur de base de données
-            /// </summary>
-            /// <returns>Un booléen : true si la déconnexion a pu s'opérer, false sinon</returns>
-            public static bool Deconnexion()
-            {
-                conn.Close();
-                return conn.State == System.Data.ConnectionState.Closed;
-            }
-
-            /// <summary>
-            /// Accesseur de l'objet MySqlConnection
-            /// </summary>
-            /// <returns>La connexion au format MySqlConnection</returns>
-            public static MySqlConnection GetConn()
-            {
-                return conn;
-            }
-
-
-           
+        public static bool Connexion()
+        {
+            string sConnexion = @"server = localhost;userid=root;password=root;database=chaos";
+            conn = new MySqlConnection(sConnexion);
+            conn.Open();
+            return (conn.State == System.Data.ConnectionState.Open);
         }
+
+        public static bool Deconnexion()
+        {
+            conn.Close();
+            return conn.State == System.Data.ConnectionState.Closed;
+        }
+        
+        public static bool Identification(string user, string mdp)
+        {
+            MySqlCommand cmd = conn.CreateCommand();
+            string requete = "SELECT COUNT(*) as NbLigne FROM USER WHERE USER='" + user + "'AND MDP_USER ='" + mdp +"'";
+            cmd.CommandText = requete;
+            int nbLigne = Convert.ToInt32(cmd.ExecuteScalar());
+            return (nbLigne==1);
+        } 
+
+        public static int Inscription(string user, string email, string mdp)
+        {
+            MySqlCommand cmd = conn.CreateCommand();
+            MySqlCommand cmd2 = conn.CreateCommand();
+            string requete2 = "SELECT COUNT(*) as Existe FROM USER WHERE USER ='" + user + "'OR EMAIL_USER ='" + email + "'";
+            cmd2.CommandText = requete2;
+            int existe = Convert.ToInt32(cmd2.ExecuteScalar());
+            if(existe == 1)
+            {
+                MessageBox.Show("Il y'a déjà un compte qui existe avec même email ou user");
+                
+                
+            }
+            else
+            {
+                
+                string requete = "INSERT INTO USER(ID_USER, USER, EMAIL_USER, MDP_USER) VALUES(null, @user, @email, @mdp)";
+                cmd.CommandText = requete;
+                cmd.Parameters.Add("null", MySqlDbType.Int32).Value = null;
+                cmd.Parameters.Add("@user", MySqlDbType.VarChar).Value = user;
+                cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = email;
+                cmd.Parameters.Add("@mdp", MySqlDbType.VarChar).Value = mdp;
+                
+            }
+
+            return existe;
+        }
+        
+
+        
+        
+        
+
+        
+
+
+
     }
+}
 
 
