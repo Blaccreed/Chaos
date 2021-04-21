@@ -32,6 +32,7 @@ namespace Chaos
             string requete = "SELECT COUNT(*) as NbLigne FROM USER WHERE USER='" + user + "'AND MDP_USER ='" + mdp +"'";
             cmd.CommandText = requete;
             int nbLigne = Convert.ToInt32(cmd.ExecuteScalar());
+            
             return (nbLigne==1);
         } 
 

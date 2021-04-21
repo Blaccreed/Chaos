@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace Chaos
 {
-    public partial class Chaos : Form
+    public partial class NouveauServeur : Form
     {
-        public Chaos()
+        public NouveauServeur()
         {
             InitializeComponent();
-            User user = new User()
-        }
-
-        private void panelServors_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
