@@ -34,14 +34,14 @@ namespace Chaos
 
         private void btDejaCompte_Click(object sender, EventArgs e)
         {
-            Form f = new Identification();
+            Form f = new Authentification();
             f.Show();
             this.Hide();
         }
 
         private void btValider_Click_1(object sender, EventArgs e)
         {
-            if(ORM.Inscription(tbUser.Text,tbEmail.Text,tbMDP.Text) == 0)
+            if(ORM.InscriptionUser(tbUser.Text,tbEmail.Text,tbMDP.Text) == 0)
             {
                 MessageBox.Show("Le compte a bien été enregistré");
 
@@ -49,7 +49,7 @@ namespace Chaos
             else
             {
 
-                Form f = new Identification();
+                Form f = new Authentification();
                 this.Hide();
                 f.Show();
                 

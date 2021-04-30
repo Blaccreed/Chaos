@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chaos
 {
-    class User
+    public class User
     {
         private int id_user;
         private string user;
@@ -28,6 +28,11 @@ namespace Chaos
             return id_user;
         }
 
+        public string GetUser()
+        {
+            return user;
+        }
+
         public string GetEmail_user()
         {
             return email_user;
@@ -38,13 +43,18 @@ namespace Chaos
             return mdp_user;
         }
 
-        public List<Serveur> GetServeurs()
+        public List<Serveur> GetLesServeurs()
         {
             return serveurs;
         }
+        public void SetLesServeurs(List<Serveur>serveurs)
+        {
+            this.serveurs = serveurs;
+        }
 
-
-
-
+        public override string ToString()
+        {
+            return "ID USER: " + id_user + "- PSEUDO: " + user + "-EMAIL: " + mdp_user;
+        }
     }
 }

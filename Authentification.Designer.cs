@@ -1,7 +1,7 @@
 ﻿
 namespace Chaos
 {
-    partial class Identification
+    partial class Authentification
     {
         /// <summary>
         ///  Required designer variable.
@@ -35,7 +35,6 @@ namespace Chaos
             this.label1 = new System.Windows.Forms.Label();
             this.lbConnServeur = new System.Windows.Forms.Label();
             this.lbStatutServeur = new System.Windows.Forms.Label();
-            this.btDeconnServeur = new System.Windows.Forms.Button();
             this.gBSeConnecter = new System.Windows.Forms.GroupBox();
             this.btSInscrire = new System.Windows.Forms.Button();
             this.btSeConnecter = new System.Windows.Forms.Button();
@@ -97,19 +96,9 @@ namespace Chaos
             this.lbStatutServeur.TabIndex = 6;
             this.lbStatutServeur.Text = "Statut Serveur:";
             // 
-            // btDeconnServeur
-            // 
-            this.btDeconnServeur.Location = new System.Drawing.Point(997, 23);
-            this.btDeconnServeur.Name = "btDeconnServeur";
-            this.btDeconnServeur.Size = new System.Drawing.Size(104, 51);
-            this.btDeconnServeur.TabIndex = 7;
-            this.btDeconnServeur.Text = "Deconnexion Serveur";
-            this.btDeconnServeur.UseVisualStyleBackColor = true;
-            this.btDeconnServeur.Click += new System.EventHandler(this.btDeconnServeur_Click);
-            // 
             // gBSeConnecter
             // 
-            this.gBSeConnecter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.gBSeConnecter.BackColor = System.Drawing.Color.Gray;
             this.gBSeConnecter.Controls.Add(this.btSInscrire);
             this.gBSeConnecter.Controls.Add(this.tbUsername);
             this.gBSeConnecter.Controls.Add(this.btSeConnecter);
@@ -143,17 +132,16 @@ namespace Chaos
             this.btSeConnecter.UseVisualStyleBackColor = true;
             this.btSeConnecter.Click += new System.EventHandler(this.btSeConnecter_Click);
             // 
-            // Identification
+            // Authentification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Thistle;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1155, 668);
             this.Controls.Add(this.gBSeConnecter);
-            this.Controls.Add(this.btDeconnServeur);
             this.Controls.Add(this.lbStatutServeur);
             this.Controls.Add(this.lbConnServeur);
-            this.Name = "Identification";
+            this.Name = "Authentification";
             this.Text = "Chaos";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gBSeConnecter.ResumeLayout(false);
@@ -171,7 +159,6 @@ namespace Chaos
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbConnServeur;
         private System.Windows.Forms.Label lbStatutServeur;
-        private System.Windows.Forms.Button btDeconnServeur;
         private System.Windows.Forms.GroupBox gBSeConnecter;
         private System.Windows.Forms.Button btSeConnecter;
         private System.Windows.Forms.Button btSInscrire;

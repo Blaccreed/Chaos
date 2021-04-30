@@ -17,7 +17,7 @@ namespace Chaos
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Identification());
+            Application.Run(new Authentification());
         }
     }
 }

@@ -6,18 +6,25 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 
 namespace Chaos
 {
-    public partial class Identification : Form
+    
+    public partial class Authentification : Form
     {
-        public Identification()
+        Dashboard dashboard;
+        public Authentification()
         {
             InitializeComponent();
             if(ORM.Connexion())
             {
-                lbConnServeur.Text = "On";
+                lbConnServeur.Text = "on";
+            }
+            else
+            {
+                lbConnServeur.Text = "off";
             }
         }
 
@@ -26,30 +33,27 @@ namespace Chaos
 
         }
 
-        private void btDeconnServeur_Click(object sender, EventArgs e)
-        {
-            if(ORM.Deconnexion())
-            {
-                lbConnServeur.Text = "Off";
-            }
-        }
-
         private void btSeConnecter_Click(object sender, EventArgs e)
         {
-            if (ORM.Identification(tbUsername.Text,tbMDP.Text))
+            if (ORM.Existe(tbUsername.Text,tbMDP.Text) == 1)
             {
-                MessageBox.Show("Re-bonjour sur chaos !");
-                Form f = new Chaos();
-                f.Show();
+                dashboard = new Dashboard();
+                dashboard.user = tbUsername.Text;
+                MessageBox.Show(Convert.ToString(ORM.GetIdUser(tbUsername.Text)));
+                dashboard.Show();
                 this.Hide();
             }
-
+            
+            else
+            {
+                MessageBox.Show("soucis");
+            }
              
         }
 
         private void lbUser_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void tbMDP_TextChanged(object sender, EventArgs e)
