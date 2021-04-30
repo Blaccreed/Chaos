@@ -20,19 +20,7 @@ namespace Chaos
         public Dashboard()
         {
            InitializeComponent();
-           if(ORM.Connexion())
-            {
-                lbOnOff.Text = "On";
-            }
-            else
-            {
-                lbOnOff.Text = "Off";
-            }
-
-            User user1 = new User(ORM.GetIdUser(Convert.ToString(lbPseudo.Text)), lbPseudo.Text, ORM.GetEmailUser(lbPseudo.Text), mdp);
-            List<Serveur> listeServeur = ORM.GetServeurUser(user1.GetId_user());
-            lbId.Text = Convert.ToString(ORM.GetIdUser(lbPseudo.Text));
-            ListBServeurs.Items.AddRange(listeServeur.ToArray());
+           
         }
 
         private void panelServors_Paint(object sender, PaintEventArgs e)
@@ -47,14 +35,27 @@ namespace Chaos
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
+            if (ORM.Connexion())
+            {
+                lbOnOff.Text = "On";
+            }
+            else
+            {
+                lbOnOff.Text = "Off";
+            }
             lbPseudo.Text = user;
-            
+            User user1 = new User(ORM.GetIdUser(lbPseudo.Text), lbPseudo.Text, ORM.GetEmailUser(lbPseudo.Text), mdp); ;
+            List<Serveur> listeServeur = ORM.GetServeurUser(user1.GetId_user());
+            lbId.Text = Convert.ToString(ORM.GetIdUser(lbPseudo.Text));
+
+            ListBServeurs.Items.AddRange(listeServeur.ToArray());
+
 
         }
 
         private void ListBServeurs_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

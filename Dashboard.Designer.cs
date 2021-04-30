@@ -89,9 +89,8 @@ namespace Chaos
             this.lbPseudo.AutoSize = true;
             this.lbPseudo.Location = new System.Drawing.Point(118, 608);
             this.lbPseudo.Name = "lbPseudo";
-            this.lbPseudo.Size = new System.Drawing.Size(39, 20);
+            this.lbPseudo.Size = new System.Drawing.Size(0, 20);
             this.lbPseudo.TabIndex = 3;
-            this.lbPseudo.Text = "caca";
             // 
             // label2
             // 

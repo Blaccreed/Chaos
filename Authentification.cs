@@ -39,7 +39,9 @@ namespace Chaos
             {
                 dashboard = new Dashboard();
                 dashboard.user = tbUsername.Text;
-                MessageBox.Show(Convert.ToString(ORM.GetIdUser(tbUsername.Text)));
+                dashboard.mdp = tbMDP.Text;
+                MessageBox.Show(tbUsername.Text);
+                
                 dashboard.Show();
                 this.Hide();
             }
