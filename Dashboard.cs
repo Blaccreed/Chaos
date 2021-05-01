@@ -44,18 +44,24 @@ namespace Chaos
                 lbOnOff.Text = "Off";
             }
             lbPseudo.Text = user;
-            User user1 = new User(ORM.GetIdUser(lbPseudo.Text), lbPseudo.Text, ORM.GetEmailUser(lbPseudo.Text), mdp); ;
+            User user1 = new User(ORM.GetIdUser(lbPseudo.Text), lbPseudo.Text, ORM.GetEmailUser(lbPseudo.Text), mdp); 
             List<Serveur> listeServeur = ORM.GetServeurUser(user1.GetId_user());
             lbId.Text = Convert.ToString(ORM.GetIdUser(lbPseudo.Text));
 
             ListBServeurs.Items.AddRange(listeServeur.ToArray());
 
-
+            
         }
 
         private void ListBServeurs_SelectedIndexChanged(object sender, EventArgs e)
         {
             
+            Serveur serveur = (Serveur)ListBServeurs.SelectedItem;
+            MessageBox.Show(Convert.ToString(serveur.GetId_serveur()));
+            List<Channel> listeChannel = ORM.GetChannelsServeur(serveur.GetId_serveur());
+            ListBChannel.Items.AddRange(listeChannel.ToArray());
         }
+
+       
     }
 }

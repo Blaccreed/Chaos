@@ -53,7 +53,7 @@ namespace Chaos
 
         public override string ToString()
         {
-            return "ID_SERVEUR:" + "  " + id_serveur +"- NOM_SERVEUR:" + nom_serveur + "- NB MAX USERS: "+ nb_max_user;
+            return "ID_SERVEUR:" + "  " + id_serveur +"- NOM_SERVEUR:" + nom_serveur;
         }
     }
 

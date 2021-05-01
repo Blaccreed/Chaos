@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chaos
 {
-    class Channel
+    public class Channel
     {
         private int id_channel;
         private int id_serveur;
@@ -34,6 +34,9 @@ namespace Chaos
             return nom_channel;
         }
 
-
+        public override string ToString()
+        {
+            return "ID:" + "  " + id_channel + "- NOM:" + nom_channel;
+        }
     }
 }

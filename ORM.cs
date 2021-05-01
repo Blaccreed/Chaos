@@ -82,43 +82,46 @@ namespace Chaos
             return email;
         }
 
-        public static List<Serveur> GetServeurUser(int id)
+        public static List<Serveur> GetServeurUser(int id_user)
         {
             List<Serveur> list = new List<Serveur>();
             MySqlCommand cmd = conn.CreateCommand();
-            string req = "SELECT S.ID_SERVEUR, S.NOM_SERVEUR , S.NB_MAX_USER  FROM SERVEUR S, DROIT D  WHERE D.ID_SERVEUR = S.ID_SERVEUR AND D.ID_USER = @id";
+            string req = "SELECT S.ID_SERVEUR, S.NOM_SERVEUR , S.NB_MAX_USER  FROM SERVEUR S, DROIT D  WHERE D.ID_SERVEUR = S.ID_SERVEUR AND D.ID_USER = @id_user";
             
-            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
+            cmd.Parameters.Add("@id_user", MySqlDbType.Int32).Value = id_user;
             cmd.CommandText = req;
             MySqlDataReader rdr = cmd.ExecuteReader();
+            
             while(rdr.Read())
             {
-                Serveur serveurRecup = new Serveur((int)rdr["ID_SERVEUR"], (string)rdr["NOM_SERVEUR"], (int)rdr["NB_MAX_USER"]);
-                list.Add(serveurRecup);
+                Serveur serveur = new Serveur((int)rdr["ID_SERVEUR"], (string)rdr["NOM_SERVEUR"], (int)rdr["NB_MAX_USER"]);
+                list.Add(serveur);
             }
+            
             rdr.Close();
             return list;
         }
 
-        public static List<Serveur> GetServeurs()
-        {
-            List<Serveur> list = new List<Serveur>();
-            MySqlCommand cmd = conn.CreateCommand();
-            string req = "SELECT *  FROM SERVEUR";
 
-           
+        public static List<Channel> GetChannelsServeur(int id_serveur)
+        {
+            List<Channel> list = new List<Channel>();
+            MySqlCommand cmd = conn.CreateCommand();
+            string req = "SELECT C.ID_CHANNEL, C.ID_SERVEUR, C.NOM_CHANNEL FROM CHANNEl C, SERVEUR S WHERE C.ID_SERVEUR = S.ID_SERVEUR AND C.ID_SERVEUR= @id_serveur";
+            
+            cmd.Parameters.Add("@id_serveur", MySqlDbType.Int32).Value = id_serveur;
             cmd.CommandText = req;
             MySqlDataReader rdr = cmd.ExecuteReader();
+            
             while (rdr.Read())
             {
-                Serveur serveurRecup = new Serveur((int)rdr["ID_SERVEUR"], (string)rdr["NOM_SERVEUR"], (int)rdr["NB_MAX_USER"]);
-                list.Add(serveurRecup);
+                Channel channel = new Channel((int)rdr["ID_CHANNEL"], (int)rdr["ID_SERVEUR"], (string)rdr["NOM_CHANNEL"]);
+                list.Add(channel);
             }
+            
             rdr.Close();
             return list;
         }
-
-
 
 
 
