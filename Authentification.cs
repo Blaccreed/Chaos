@@ -20,11 +20,11 @@ namespace Chaos
             InitializeComponent();
             if(ORM.Connexion())
             {
-                lbConnServeur.Text = "on";
+                lbConnServeur.Text = "Connecté";
             }
             else
             {
-                lbConnServeur.Text = "off";
+                lbConnServeur.Text = "Déconnecté";
             }
         }
 
