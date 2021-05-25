@@ -64,7 +64,10 @@ namespace Chaos
 
         private void btEnvMsg_Click(object sender, EventArgs e)
         {
-
+            Channel channel = (Channel)ListBChannel.SelectedItem;
+            Message message = new Message(ORM.GetIdUser(lbPseudo.Text), channel.GetIdChannel(), tbContenue.Text, DateTime.Now);
+            ORM.ajouterMessage(message);
+            ListBMessages.Items.Add(message.ToString());
         }
 
         private void ListBChannel_SelectedIndexChanged(object sender, EventArgs e)

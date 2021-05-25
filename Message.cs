@@ -28,6 +28,14 @@ namespace Chaos
             this.pseudo = pseudo;
         }
 
+        public Message(int id_user, int id_channel, string contenue, DateTime dt_hr_env_msg)
+        {
+            this.id_user = id_user;
+            this.id_channel = id_channel;
+            this.contenue = contenue;
+            this.dt_hr_env_msg = dt_hr_env_msg;
+        }
+
         public int GetId_message()
         {
             return id_message;

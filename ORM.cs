@@ -147,15 +147,20 @@ namespace Chaos
             return list;
         }
 
-        public static void ajouterMessage(string message)
+        public static bool ajouterMessage(Message message)
         {
             MySqlCommand cmd = conn.CreateCommand();
-            string requete = "INSERT INTO USER(ID_USER, USER, EMAIL_USER, MDP_USER) VALUES(null, @user, @email, @mdp)";
+            string requete = "INSERT INTO MESSAGE(ID_MESSAGE, ID_USER, ID_CHANNEL, CONTENUE, DT_HR_ENVOIE) VALUES(null, @id_user, @id_channel, @contenue, @date)";
             cmd.CommandText = requete;
+
             cmd.Parameters.Add("null", MySqlDbType.Int32).Value = null;
-            cmd.Parameters.Add("@user", MySqlDbType.VarChar).Value = user;
-            cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = email;
-            cmd.Parameters.Add("@mdp", MySqlDbType.VarChar).Value = mdp;
+            cmd.Parameters.Add("@id_user", MySqlDbType.VarChar).Value = message.GetId_User();
+            cmd.Parameters.Add("@id_channel", MySqlDbType.VarChar).Value = message.GetId_Channel();
+            cmd.Parameters.Add("@contenue", MySqlDbType.VarChar).Value = message.GetContenue();
+            cmd.Parameters.Add("@date", MySqlDbType.VarChar).Value = message.GetDt_hr_env_msg();
+            
+            return cmd.ExecuteNonQuery() == 1;
+
         }
 
 
