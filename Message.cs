@@ -71,7 +71,7 @@ namespace Chaos
 
         public override string ToString()
         {
-            return ">>>" + pseudo + ":" + "  " + contenue + "              " + "[" + dt_hr_env_msg + "]";
+            return ">>>" + " " +pseudo + ":" + "  " + contenue + "              " + "[" + dt_hr_env_msg + "]";
         }
     }
 }
