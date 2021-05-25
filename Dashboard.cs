@@ -61,6 +61,19 @@ namespace Chaos
             ListBChannel.Items.AddRange(listeChannel.ToArray());
         }
 
-       
+
+        private void btEnvMsg_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ListBChannel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Message message = (Message)ListBMessages.SelectedItem;
+            Serveur serveur = (Serveur)ListBServeurs.SelectedItem;
+            List<Message> listeMessage = ORM.GetMessagesChannel(serveur.GetId_serveur());
+            ListBMessages.Items.Clear();
+            ListBMessages.Items.AddRange(listeMessage.ToArray());
+        }
     }
 }

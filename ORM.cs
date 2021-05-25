@@ -82,6 +82,7 @@ namespace Chaos
             return email;
         }
 
+        // récupérer les serveurs d'un utilisateur
         public static List<Serveur> GetServeurUser(int id_user)
         {
             List<Serveur> list = new List<Serveur>();
@@ -98,25 +99,6 @@ namespace Chaos
                 list.Add(serveur);
             }
             
-            rdr.Close();
-            return list;
-        }
-
-        public static List<Message> GetMessagesChannel(int id_channel)
-        {
-            List<Message> list = new List<Message>();
-            string req = "SELECT * = S.ID_SERVEUR AND C.ID_SERVEUR= @id_serveur";
-
-            cmd.Parameters.Add("@id_serveur", MySqlDbType.Int32).Value = id_serveur;
-            cmd.CommandText = req;
-            MySqlDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
-            {
-                Message message = new Message((int)rdr["ID_MESSAGE"], (int)rdr["ID_USER"], (int)rdr["ID_CHANNEL"], (string)rdr["CONTENUE"], (DateTime)rdr["DT_HR_ENVOIE"], (string)rdr["USER"]);
-                list.Add(channel);
-            }
-
             rdr.Close();
             return list;
         }
@@ -143,8 +125,38 @@ namespace Chaos
         }
 
 
+        //récupérer les messages d'un channel
 
+        public static List<Message> GetMessagesChannel(int id_channel)
+        {
+            List<Message> list = new List<Message>();
+            MySqlCommand cmd = conn.CreateCommand();
+            string req = "SELECT M.ID_MESSAGE, M.ID_USER, M.ID_CHANNEL, M.CONTENUE, M.DT_HR_ENVOIE, U.USER FROM USER U, MESSAGE M WHERE U.ID_USER = M.ID_USER AND M.ID_CHANNEL = @id_channel";
 
+            cmd.Parameters.Add("@id_channel", MySqlDbType.Int32).Value = id_channel;
+            cmd.CommandText = req;
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                Message message = new Message((int)rdr["ID_MESSAGE"], (int)rdr["ID_USER"], (int)rdr["ID_CHANNEL"], (string)rdr["CONTENUE"], (DateTime)rdr["DT_HR_ENVOIE"], (string)rdr["USER"]);
+                list.Add(message);
+            }
+
+            rdr.Close();
+            return list;
+        }
+
+        public static void ajouterMessage(string message)
+        {
+            MySqlCommand cmd = conn.CreateCommand();
+            string requete = "INSERT INTO USER(ID_USER, USER, EMAIL_USER, MDP_USER) VALUES(null, @user, @email, @mdp)";
+            cmd.CommandText = requete;
+            cmd.Parameters.Add("null", MySqlDbType.Int32).Value = null;
+            cmd.Parameters.Add("@user", MySqlDbType.VarChar).Value = user;
+            cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = email;
+            cmd.Parameters.Add("@mdp", MySqlDbType.VarChar).Value = mdp;
+        }
 
 
 

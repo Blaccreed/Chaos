@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chaos
 {
-    class Message
+    public class Message
     {
         /// <summary>
         /// Cette classe permet de gérer les messages que s'envoient les utilisateurs.
@@ -63,7 +63,7 @@ namespace Chaos
 
         public override string ToString()
         {
-            return ">>>" + pseudo + ":" + "  " + contenue + " " + "[" + dt_hr_env_msg + "]";
+            return ">>>" + pseudo + ":" + "  " + contenue + "              " + "[" + dt_hr_env_msg + "]";
         }
     }
 }
