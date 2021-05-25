@@ -102,6 +102,25 @@ namespace Chaos
             return list;
         }
 
+        public static List<Message> GetMessagesChannel(int id_channel)
+        {
+            List<Message> list = new List<Message>();
+            string req = "SELECT * = S.ID_SERVEUR AND C.ID_SERVEUR= @id_serveur";
+
+            cmd.Parameters.Add("@id_serveur", MySqlDbType.Int32).Value = id_serveur;
+            cmd.CommandText = req;
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                Message message = new Message((int)rdr["ID_MESSAGE"], (int)rdr["ID_USER"], (int)rdr["ID_CHANNEL"], (string)rdr["CONTENUE"], (DateTime)rdr["DT_HR_ENVOIE"], (string)rdr["USER"]);
+                list.Add(channel);
+            }
+
+            rdr.Close();
+            return list;
+        }
+
 
         public static List<Channel> GetChannelsServeur(int id_serveur)
         {

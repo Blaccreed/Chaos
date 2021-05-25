@@ -12,18 +12,20 @@ namespace Chaos
         /// Cette classe permet de gérer les messages que s'envoient les utilisateurs.
         /// </summary>
         private int id_message;
+        private int id_user;
+        private int id_channel;
         private string contenue;
         private DateTime dt_hr_env_msg;
-        private User LUtilisateur;
-        private Channel LeChannel;
+        private string pseudo;
 
-        public Message(int id_message, string contenue, DateTime dt_hr_env_msg, User LUtilisateur, Channel LeChannel)
+        public Message(int id_message, int id_user, int id_channel, string contenue, DateTime dt_hr_env_msg, string pseudo)
         {
             this.id_message = id_message;
+            this.id_user = id_user;
+            this.id_channel = id_channel;
             this.contenue = contenue;
             this.dt_hr_env_msg = dt_hr_env_msg;
-            this.LUtilisateur = LUtilisateur;
-            this.LeChannel = LeChannel;
+            this.pseudo = pseudo;
         }
 
         public int GetId_message()
@@ -31,7 +33,18 @@ namespace Chaos
             return id_message;
         }
 
-        public String GetContenue()
+        public int GetId_User()
+        {
+            return id_message;
+        }
+
+        public int GetId_Channel()
+        {
+            return id_message;
+        }
+
+
+        public string GetContenue()
         {
             return contenue;
         }
@@ -41,16 +54,16 @@ namespace Chaos
             return dt_hr_env_msg;
         }
 
-        public User GetLUtilisateur()
+        public string GetPseudo()
         {
-            return LUtilisateur;
+            return pseudo;
         }
 
-        public Channel GetLeChannel()
+        
+
+        public override string ToString()
         {
-            return LeChannel;
+            return ">>>" + pseudo + ":" + "  " + contenue + " " + "[" + dt_hr_env_msg + "]";
         }
-
-
     }
 }
