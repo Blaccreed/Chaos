@@ -26,6 +26,7 @@ namespace Chaos
             return conn.State == System.Data.ConnectionState.Closed;
         }
 
+        // méthode pour inscrire l'utilisateur
         public static int InscriptionUser(string user, string email, string mdp)
         {
             MySqlCommand cmd = conn.CreateCommand();
@@ -53,6 +54,7 @@ namespace Chaos
             return existe;
         }
 
+        //vérifie le nombre de compte qui existe
         public static int Existe(string user, string mdp)
         {
             MySqlCommand cmd = conn.CreateCommand();
@@ -62,6 +64,7 @@ namespace Chaos
             return c;
         }
 
+        //récupère l'id de l'utilisateur 
         public static int GetIdUser(string user)
         {
             MySqlCommand cmd = conn.CreateCommand();
@@ -72,6 +75,7 @@ namespace Chaos
             return id; 
         }
             
+        //récupère l'email de l'utilisateur
         public static string GetEmailUser(string user)
         {
             MySqlCommand cmd = conn.CreateCommand();
@@ -103,7 +107,7 @@ namespace Chaos
             return list;
         }
 
-
+        //récupère les channels d'un serveur
         public static List<Channel> GetChannelsServeur(int id_serveur)
         {
             List<Channel> list = new List<Channel>();
@@ -147,6 +151,7 @@ namespace Chaos
             return list;
         }
 
+        // permet d'ajouter une messagerie dans la base de données
         public static bool ajouterMessage(Message message)
         {
 
@@ -164,7 +169,26 @@ namespace Chaos
 
         }
 
+        public static List<User> GetUserServeur(int id_serveur)
+        {
+            List<User> list = new List<User>();
+            MySqlCommand cmd = conn.CreateCommand();
+            string req = "SELECT U.ID_USER, U.USER, U.EMAIL_USER, U.MDP_USER FROM DROIT D , USER U WHERE U.ID_USER = D.ID_USER AND ID_SERVEUR = @id_serveur";
 
+            cmd.Parameters.Add("@id_serveur", MySqlDbType.Int32).Value = id_serveur;
+            cmd.CommandText = req;
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                User user = new User((int)rdr["ID_USER"], (string)rdr["USER"], (string)rdr["EMAIL_USER"], (string)rdr["MDP_USER"]);
+                list.Add(user);
+            }
+
+            rdr.Close();
+            return list;
+
+        }
 
 
     }

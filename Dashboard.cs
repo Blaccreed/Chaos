@@ -58,6 +58,9 @@ namespace Chaos
             Serveur serveur = (Serveur)ListBServeurs.SelectedItem;
             
             List<Channel> listeChannel = ORM.GetChannelsServeur(serveur.GetId_serveur());
+            List<User> listeUser = ORM.GetUserServeur(serveur.GetId_serveur());
+            listeBDroit.Items.Clear();
+            listeBDroit.Items.AddRange(listeUser.ToArray());
             ListBChannel.Items.Clear();
             ListBChannel.Items.AddRange(listeChannel.ToArray());
         }

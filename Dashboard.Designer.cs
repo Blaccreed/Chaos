@@ -42,11 +42,14 @@ namespace Chaos
             this.btEnvMsg = new System.Windows.Forms.Button();
             this.tbContenue = new System.Windows.Forms.TextBox();
             this.ListBMessages = new System.Windows.Forms.ListBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listeBDroit = new System.Windows.Forms.ListBox();
+            this.lbDroit = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panelServors.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelServors
@@ -139,8 +142,8 @@ namespace Chaos
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.listBox1);
             this.groupBox1.Controls.Add(this.btEnvMsg);
             this.groupBox1.Controls.Add(this.tbContenue);
             this.groupBox1.Controls.Add(this.ListBMessages);
@@ -172,29 +175,49 @@ namespace Chaos
             // 
             this.ListBMessages.FormattingEnabled = true;
             this.ListBMessages.ItemHeight = 20;
-            this.ListBMessages.Location = new System.Drawing.Point(36, 38);
+            this.ListBMessages.Location = new System.Drawing.Point(36, 98);
             this.ListBMessages.Name = "ListBMessages";
-            this.ListBMessages.Size = new System.Drawing.Size(437, 544);
+            this.ListBMessages.Size = new System.Drawing.Size(437, 484);
             this.ListBMessages.TabIndex = 0;
             this.ListBMessages.SelectedIndexChanged += new System.EventHandler(this.ListBMessages_SelectedIndexChanged);
             // 
-            // listBox1
+            // listeBDroit
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(542, 258);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(242, 324);
-            this.listBox1.TabIndex = 3;
+            this.listeBDroit.FormattingEnabled = true;
+            this.listeBDroit.ItemHeight = 20;
+            this.listeBDroit.Location = new System.Drawing.Point(20, 65);
+            this.listeBDroit.Name = "listeBDroit";
+            this.listeBDroit.Size = new System.Drawing.Size(242, 324);
+            this.listeBDroit.TabIndex = 3;
+            // 
+            // lbDroit
+            // 
+            this.lbDroit.AutoSize = true;
+            this.lbDroit.Location = new System.Drawing.Point(20, 42);
+            this.lbDroit.Name = "lbDroit";
+            this.lbDroit.Size = new System.Drawing.Size(175, 20);
+            this.lbDroit.TabIndex = 4;
+            this.lbDroit.Text = "Personne présent serveur:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(564, 224);
+            this.label1.Location = new System.Drawing.Point(36, 75);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 20);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 20);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Message";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.listeBDroit);
+            this.groupBox2.Controls.Add(this.lbDroit);
+            this.groupBox2.Location = new System.Drawing.Point(505, 75);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(285, 429);
+            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "groupBox2";
             // 
             // Dashboard
             // 
@@ -216,6 +239,8 @@ namespace Chaos
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -235,7 +260,9 @@ namespace Chaos
         private System.Windows.Forms.TextBox tbContenue;
         private System.Windows.Forms.ListBox ListBMessages;
         private System.Windows.Forms.Button btEnvMsg;
+        private System.Windows.Forms.Label lbDroit;
+        private System.Windows.Forms.ListBox listeBDroit;
+        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox1;
     }
 }
