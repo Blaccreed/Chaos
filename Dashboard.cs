@@ -56,9 +56,25 @@ namespace Chaos
         private void ListBServeurs_SelectedIndexChanged(object sender, EventArgs e)
         {
             Serveur serveur = (Serveur)ListBServeurs.SelectedItem;
-            MessageBox.Show(Convert.ToString(serveur.GetId_serveur()));
+            
             List<Channel> listeChannel = ORM.GetChannelsServeur(serveur.GetId_serveur());
+            ListBChannel.Items.Clear();
             ListBChannel.Items.AddRange(listeChannel.ToArray());
+        }
+
+        private void ListBChannel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Channel channel = (Channel)ListBChannel.SelectedItem;
+            List<Message> listeMessage = ORM.GetMessagesChannel(channel.GetIdChannel());
+            ListBMessages.Items.Clear();
+            ListBMessages.Items.AddRange(listeMessage.ToArray());
+        }
+
+
+        private void ListBMessages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Message message = (Message)ListBMessages.SelectedItem;
+            MessageBox.Show(Convert.ToString(message.GetId_User()));
         }
 
 
@@ -67,16 +83,8 @@ namespace Chaos
             Channel channel = (Channel)ListBChannel.SelectedItem;
             Message message = new Message(ORM.GetIdUser(lbPseudo.Text), channel.GetIdChannel(), tbContenue.Text, DateTime.Now);
             ORM.ajouterMessage(message);
-            ListBMessages.Items.Add(message.ToString());
-        }
-
-        private void ListBChannel_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Message message = (Message)ListBMessages.SelectedItem;
-            Serveur serveur = (Serveur)ListBServeurs.SelectedItem;
-            List<Message> listeMessage = ORM.GetMessagesChannel(serveur.GetId_serveur());
             ListBMessages.Items.Clear();
-            ListBMessages.Items.AddRange(listeMessage.ToArray());
+            ListBMessages.Items.Add(message.ToString());
         }
     }
 }

@@ -149,9 +149,10 @@ namespace Chaos
 
         public static bool ajouterMessage(Message message)
         {
+
             MySqlCommand cmd = conn.CreateCommand();
             string requete = "INSERT INTO MESSAGE(ID_MESSAGE, ID_USER, ID_CHANNEL, CONTENUE, DT_HR_ENVOIE) VALUES(null, @id_user, @id_channel, @contenue, @date)";
-            cmd.CommandText = requete;s
+            cmd.CommandText = requete;
 
             cmd.Parameters.Add("null", MySqlDbType.Int32).Value = null;
             cmd.Parameters.Add("@id_user", MySqlDbType.Int32).Value = message.GetId_User();

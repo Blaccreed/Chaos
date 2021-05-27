@@ -43,12 +43,12 @@ namespace Chaos
 
         public int GetId_User()
         {
-            return id_message;
+            return id_user;
         }
 
         public int GetId_Channel()
         {
-            return id_message;
+            return id_channel;
         }
 
 
@@ -71,7 +71,7 @@ namespace Chaos
 
         public override string ToString()
         {
-            return ">>>" + " " +pseudo + ":" + "  " + contenue + "              " + "[" + dt_hr_env_msg + "]";
+            return ">>>" + " " + pseudo + "(" + id_user + ")" + ":" + "  " + contenue + "              " + "[" + dt_hr_env_msg + "]";
         }
     }
 }
